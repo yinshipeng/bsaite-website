@@ -7,6 +7,10 @@ export default defineNuxtConfig({
   css: [
     '~/assets/css/main.css'
   ],
+  // 添加静态站点生成配置
+  nitro: {
+    preset: 'static'
+  },
   app: {
     head: {
       title: '芭赛特进出口(商丘)有限公司',

@@ -9,7 +9,7 @@
 - ⚡ **高性能**: 基于 Nuxt.js 4 框架，支持 SSR/SSG，加载速度更快
 - 🎨 **UI 组件库**: 使用 @nuxt/ui 3.0 提供丰富的交互组件
 - 🔍 **SEO 优化**: 内置 SEO 优化配置，提高搜索引擎排名
-- 🌐 **多页面**: 包含首页、关于我们、产品中心、新闻资讯、解决方案、联系我们等完整页面
+- 🌐 **多页面**: 包含首页、关于我们、产品中心、新闻资讯、联系我们等完整页面
 - 🔧 **TypeScript**: 完整的 TypeScript 支持，提供更好的开发体验
 
 ## 🛠️ 技术栈
@@ -47,7 +47,6 @@ bsaite-website/
 │   ├── about.vue    # 关于我们
 │   ├── products.vue # 产品中心
 │   ├── news.vue     # 新闻资讯
-│   ├── solutions.vue# 解决方案
 │   └── contact.vue  # 联系我们
 ├── public/          # 公共静态文件
 ├── app.vue          # 根组件
@@ -102,6 +101,7 @@ pnmp generate
 ## 📄 页面介绍
 
 ### 首页 (/)
+
 - Hero 区域展示企业形象
 - 服务优势介绍
 - 产品展示预览
@@ -110,45 +110,46 @@ pnmp generate
 - CTA 行动引导
 
 ### 关于我们 (/about)
+
 - 公司详细介绍
 - 企业愿景使命
 - 发展历程时间线
 - 团队优势展示
 
 ### 产品中心 (/products)
+
 - 产品分类筛选
 - 产品列表展示
 - 产品详情弹窗
 - 产品特点介绍
 
 ### 新闻资讯 (/news)
+
 - 新闻分类筛选
 - 新闻列表展示
 - 新闻详情查看
 
-### 解决方案 (/solutions)
-- 解决方案展示
-- 服务流程介绍
-- 成功案例分享
-- 详情弹窗查看
-
 ### 联系我们 (/contact)
+
 - 联系方式展示
 - 在线咨询表单
 
 ## 🎨 设计系统
 
 ### 色彩主题
+
 - 主色调: `#2C5530` (深绿色)
 - 辅助色: `#4A7C59` (浅绿色)
 - 强调色: `#22c55e` (亮绿色)
 - 背景色: `#F8F9FA` (浅灰色)
 
 ### 字体规范
+
 - 主字体: Inter, system-ui, -apple-system, sans-serif
 - 字重: 400 (Regular), 600 (SemiBold), 700 (Bold)
 
 ### 组件规范
+
 - 圆角: 8px (小), 12px (中), 16px (大)
 - 阴影: 多层级阴影系统
 - 间距: 基于 4px 网格系统
@@ -156,6 +157,7 @@ pnmp generate
 ## 🔧 配置管理
 
 ### 运行时配置
+
 项目使用 Nuxt 4 的 `runtimeConfig` 来管理配置：
 
 ```typescript
@@ -163,28 +165,32 @@ pnmp generate
 export default defineNuxtConfig({
   runtimeConfig: {
     public: {
-      siteName: '芭赛特进出口(商丘)有限公司',
-      siteUrl: 'https://www.bsaite.cn',
-      companyPhone: '400-0563-118',
-      companyAddress: '河南省商丘市民权县绿洲街道办事处庄周大道东段北侧2-1号'
-    }
-  }
-})
+      siteName: "芭赛特进出口(商丘)有限公司",
+      siteUrl: "https://www.bsaite.cn",
+      companyPhone: "400-0563-118",
+      companyAddress: "河南省商丘市民权县绿洲街道办事处庄周大道东段北侧2-1号",
+    },
+  },
+});
 ```
 
 在组件中使用：
+
 ```vue
 <script setup>
-const config = useRuntimeConfig()
+const config = useRuntimeConfig();
 // 访问配置：config.public.siteName
 </script>
 ```
 
 ### 修改公司信息
+
 在 `nuxt.config.ts` 中修改 `runtimeConfig.public` 配置即可全局更新公司信息。
 
 ### 修改主题色彩
+
 编辑 `tailwind.config.js` 文件中的颜色配置：
+
 ```javascript
 theme: {
   extend: {
@@ -203,8 +209,9 @@ theme: {
 ## 📱 响应式设计
 
 网站采用移动优先的响应式设计策略：
+
 - 移动端: < 768px
-- 平板端: 768px - 1024px  
+- 平板端: 768px - 1024px
 - 桌面端: > 1024px
 
 所有组件和页面都经过精心设计，确保在不同设备上都有良好的显示效果。

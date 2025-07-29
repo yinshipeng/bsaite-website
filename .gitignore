@@ -3,6 +3,8 @@ node_modules
 *.log
 .DS_Store
 dist/
-build/
 .vscode/
 .idea/
+.nuxt/
+.output/
+.claude/

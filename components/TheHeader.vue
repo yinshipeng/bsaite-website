@@ -145,7 +145,6 @@ const menuItems = [
   { name: '关于我们', path: '/about' },
   { name: '产品中心', path: '/products' },
   { name: '新闻资讯', path: '/news' },
-  { name: '解决方案', path: '/solutions' },
   { name: '联系我们', path: '/contact' }
 ]
 </script>

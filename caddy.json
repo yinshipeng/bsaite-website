@@ -1,0 +1,95 @@
+{
+  "apps": {
+    "http": {
+      "servers": {
+        "prod_http": {
+          "listen": [":80"],
+          "routes": [
+            {
+              "handle": [
+                {
+                  "handler": "file_server",
+                  "root": "./.output/public"
+                }
+              ]
+            },
+            {
+              "match": [
+                {
+                  "not": [
+                    {
+                      "file": {
+                        "try_files": ["{path}", "/index.html"]
+                      }
+                    }
+                  ]
+                }
+              ],
+              "handle": [
+                {
+                  "handler": "rewrite",
+                  "uri": "/index.html"
+                }
+              ]
+            }
+          ]
+        },
+        "prod_https": {
+          "listen": [":443"],
+          "routes": [
+            {
+              "handle": [
+                {
+                  "handler": "file_server",
+                  "root": "./.output/public"
+                }
+              ]
+            },
+            {
+              "match": [
+                {
+                  "not": [
+                    {
+                      "file": {
+                        "try_files": ["{path}", "/index.html"]
+                      }
+                    }
+                  ]
+                }
+              ],
+              "handle": [
+                {
+                  "handler": "rewrite",
+                  "uri": "/index.html"
+                }
+              ]
+            }
+          ],
+          "tls_connection_policies": [
+            {
+              "certificate_selection": {
+                "any_tag": ["cert_local"]
+              }
+            }
+          ],
+          "automatic_https": {
+            "disable": false
+          }
+        }
+      }
+    },
+    "tls": {
+      "automation": {
+        "policies": [
+          {
+            "issuers": [
+              {
+                "module": "internal"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
