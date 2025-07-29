@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 全局背景设置 */
+body {
+  background-color: #ffffff;
+}
+
+/* 高端简约配色方案 */
+:root {
+  /* 主色调 - 深蓝色（更浅更友好） */
+  --primary-color: #1e40af;
+  --primary-light: #3b82f6;
+  --primary-dark: #1d4ed8;
+  
+  /* 辅助色 - 中性灰 */
+  --secondary-color: #6b7280;
+  --secondary-light: #9ca3af;
+  --secondary-dark: #4b5563;
+  
+  /* 背景色 - 纯净白 */
+  --background-color: #ffffff;
+  --background-light: #f8fafc;
+  --background-dark: #f1f5f9;
+  
+  /* 文字颜色 */
+  --text-dark: #111827;
+  --text-light: #6b7280;
+}
+
+/* 高端简约按钮样式 */
+.btn-primary {
+  @apply bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-md font-semibold transition-all duration-300 shadow-lg hover:shadow-xl;
+}
+
+.btn-secondary {
+  @apply bg-transparent border-2 border-gray-500 text-gray-700 hover:bg-gray-500 hover:text-white px-8 py-4 rounded-md font-semibold transition-all duration-300;
+}
+
+.btn-outline {
+  @apply bg-transparent border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-6 py-3 rounded-md font-semibold transition-all duration-300;
+}
+
+/* 高端简约卡片样式 */
+.modern-card {
+  @apply bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100;
+}
+
+.premium-card {
+  @apply bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 border border-gray-200;
+}
+
+/* 高端特色图标样式 */
+.feature-icon {
+  @apply w-16 h-16 mx-auto mb-4 p-4 rounded-lg text-white bg-blue-600;
+}
+
+.feature-icon-secondary {
+  @apply w-16 h-16 mx-auto mb-4 p-4 rounded-lg text-white bg-gray-500;
+}
+
+/* 现代化输入框 */
+.modern-input {
+  @apply w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300;
+}
+
+/* 高端导航栏样式 */
+.navbar-shadow {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+/* 动画效果 */
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 高端装饰元素 */
+.premium-pattern {
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(107, 114, 128, 0.05) 0%, transparent 50%);
+}
+
+/* 高端光影效果 */
+.premium-glow {
+  box-shadow: 
+    0 0 30px rgba(59, 130, 246, 0.15),
+    inset 0 0 30px rgba(59, 130, 246, 0.05);
+}
