@@ -36,6 +36,9 @@ importers:
       '@types/node':
         specifier: ^22.9.0
         version: 22.16.5
+      caddy:
+        specifier: ^0.0.13
+        version: 0.0.13
       tailwindcss:
         specifier: ^3.4.0
         version: 3.4.17
@@ -1810,6 +1813,9 @@ packages:
   cache-content-type@1.0.1:
     resolution: {integrity: sha512-IKufZ1o4Ut42YUrZSo8+qnMTrFuKkvyoLXUywKz9GJ5BrhOFGhLdkx9sG4KAnVvbY6kEcSFjLQul+DVmBm2bgA==}
     engines: {node: '>= 6.0.0'}
+
+  caddy@0.0.13:
+    resolution: {integrity: sha512-rc9RPEM0O32dzL52y9Udm+Y/2ll8cbaIVx0x4Q6yBrUtPvSyaDj46XPzhexLhfD0nh63+PsPVW1uMSsrTVZgag==}
 
   call-bind-apply-helpers@1.0.2:
     resolution: {integrity: sha512-Sp1ablJ0ivDkSzjcaJdxEunN5/XvksFJ2sMBFfq6x0ryhQV/2b/KwFe21cMpmHtPOSij8K99/wSfoEuTObmuMQ==}
@@ -6494,6 +6500,8 @@ snapshots:
     dependencies:
       mime-types: 2.1.35
       ylru: 1.4.0
+
+  caddy@0.0.13: {}
 
   call-bind-apply-helpers@1.0.2:
     dependencies:

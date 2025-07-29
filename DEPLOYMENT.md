@@ -6,14 +6,36 @@
 
 #### 生产环境 - HTTP
 ```bash
-# 构建并启动生产环境 (HTTP)
+# 前台启动
 ./start.sh http
+
+# 后台启动
+./start.sh http --background
+# 或
+./start.sh http -b
 ```
 
 #### 生产环境 - HTTPS
 ```bash
-# 构建并启动生产环境 (HTTPS)
+# 前台启动
 ./start.sh https
+
+# 后台启动
+./start.sh https --background
+# 或
+./start.sh https -b
+```
+
+#### 服务管理
+```bash
+# 查看服务状态
+./start.sh status
+
+# 停止服务
+./start.sh stop
+
+# 查看日志
+./start.sh logs
 ```
 
 ## 安装依赖
@@ -81,12 +103,18 @@ pnpm build
 # 预览构建结果
 pnpm preview
 
-# 使用Caddy启动
-./start.sh http   # 生产模式 (HTTP)
-./start.sh https  # 生产模式 (HTTPS)
+# 使用Caddy启动（前台）
+./start.sh http
+./start.sh https
 
-# 手动启动Caddy
-caddy run --config caddy.json
+# 使用Caddy启动（后台）
+./start.sh http --background
+./start.sh https --background
+
+# 服务管理
+./start.sh status    # 查看服务状态
+./start.sh stop      # 停止服务
+./start.sh logs      # 查看日志
 ```
 
 ## 访问地址
@@ -198,3 +226,13 @@ chmod +x start.sh
 ### Caddy配置验证
 ```bash
 caddy validate --config caddy.json
+```
+
+### 后台运行日志
+后台运行时，日志保存在 `caddy.log` 文件中：
+```bash
+# 查看实时日志
+tail -f caddy.log
+
+# 查看最后100行日志
+tail -100 caddy.log

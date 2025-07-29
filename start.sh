@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 一键启动脚本 - 编译并启动生产网站
-# 使用方法: ./start.sh [http|https]
+# 使用方法: ./start.sh [http|https] [--background|-b]
 
 # 设置颜色输出
 RED='\033[0;31m'
@@ -12,9 +12,18 @@ NC='\033[0m' # No Color
 
 # 默认模式
 MODE=${1:-http}
+BACKGROUND=false
+
+# 检查是否有后台运行参数
+if [[ "$2" == "--background" || "$2" == "-b" ]]; then
+    BACKGROUND=true
+fi
 
 echo -e "${GREEN}🚀 芭赛特网站一键启动脚本${NC}"
 echo -e "${YELLOW}模式: $MODE${NC}"
+if [ "$BACKGROUND" = true ]; then
+    echo -e "${YELLOW}运行方式: 后台运行${NC}"
+fi
 
 # 检查依赖
 check_dependencies() {
@@ -68,7 +77,14 @@ start_http() {
     echo -e "${YELLOW}🚀 启动HTTP生产服务器...${NC}"
     echo -e "${GREEN}🌐 访问: http://localhost${NC}"
     
-    caddy run --config caddy.json
+    if [ "$BACKGROUND" = true ]; then
+        nohup caddy run --config caddy.json > caddy.log 2>&1 &
+        echo -e "${GREEN}✅ Caddy已在后台启动，日志保存在 caddy.log${NC}"
+        echo -e "${YELLOW}查看日志: tail -f caddy.log${NC}"
+        echo -e "${YELLOW}停止服务: pkill caddy${NC}"
+    else
+        caddy run --config caddy.json
+    fi
 }
 
 # HTTPS模式
@@ -91,31 +107,77 @@ start_https() {
     echo -e "${BLUE}🌐 访问: https://localhost${NC}"
     echo -e "${BLUE}🌐 HTTP会自动重定向到HTTPS${NC}"
     
-    caddy run --config caddy.json
+    if [ "$BACKGROUND" = true ]; then
+        nohup caddy run --config caddy.json > caddy.log 2>&1 &
+        echo -e "${GREEN}✅ Caddy已在后台启动，日志保存在 caddy.log${NC}"
+        echo -e "${YELLOW}查看日志: tail -f caddy.log${NC}"
+        echo -e "${YELLOW}停止服务: pkill caddy${NC}"
+    else
+        caddy run --config caddy.json
+    fi
+}
+
+# 停止服务
+stop_service() {
+    echo -e "${YELLOW}🛑 停止Caddy服务...${NC}"
+    pkill caddy 2>/dev/null || echo -e "${YELLOW}Caddy未运行${NC}"
+    echo -e "${GREEN}✅ Caddy服务已停止${NC}"
+}
+
+# 查看状态
+status_service() {
+    if pgrep caddy > /dev/null; then
+        echo -e "${GREEN}✅ Caddy正在运行${NC}"
+        echo -e "${YELLOW}进程ID: $(pgrep caddy)${NC}"
+    else
+        echo -e "${RED}❌ Caddy未运行${NC}"
+    fi
+}
+
+# 查看日志
+view_logs() {
+    if [ -f caddy.log ]; then
+        echo -e "${YELLOW}📋 查看Caddy日志...${NC}"
+        tail -f caddy.log
+    else
+        echo -e "${RED}❌ 日志文件不存在${NC}"
+    fi
 }
 
 # 主程序
 main() {
-    check_dependencies
-    
-    case $MODE in
+    case $1 in
         "http")
+            check_dependencies
             install_dependencies
             start_http
             ;;
         "https")
+            check_dependencies
             install_dependencies
             start_https
             ;;
+        "stop")
+            stop_service
+            ;;
+        "status")
+            status_service
+            ;;
+        "logs")
+            view_logs
+            ;;
         *)
-            echo -e "${RED}❌ 无效的模式: $MODE${NC}"
-            echo -e "${YELLOW}使用方法: ./start.sh [http|https]${NC}"
-            echo -e "${YELLOW}  http  - 生产模式 (HTTP)${NC}"
-            echo -e "${YELLOW}  https - 生产模式 (HTTPS)${NC}"
+            echo -e "${RED}❌ 无效的模式: $1${NC}"
+            echo -e "${YELLOW}使用方法:${NC}"
+            echo -e "${YELLOW}  ./start.sh http [--background|-b]    # 启动HTTP生产服务器${NC}"
+            echo -e "${YELLOW}  ./start.sh https [--background|-b]   # 启动HTTPS生产服务器${NC}"
+            echo -e "${YELLOW}  ./start.sh stop                      # 停止服务${NC}"
+            echo -e "${YELLOW}  ./start.sh status                    # 查看服务状态${NC}"
+            echo -e "${YELLOW}  ./start.sh logs                      # 查看日志${NC}"
             exit 1
             ;;
     esac
 }
 
 # 执行主程序
-main
+main "$@"
