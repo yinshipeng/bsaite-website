@@ -49,8 +49,8 @@
           <div class="hidden lg:flex justify-center">
             <div class="w-96 h-96 bg-white bg-opacity-10 rounded-full flex items-center justify-center backdrop-blur-sm overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1592921870789-04563d55041c?w=400&h=400&fit=crop&crop=entropy&auto=format&q=75" 
-                alt="绿色植物种苗" 
+                src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=400&fit=crop&crop=entropy&auto=format&q=75" 
+                alt="绿色农田植物" 
                 class="w-80 h-80 rounded-full object-cover"
               />
             </div>
