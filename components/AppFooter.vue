@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>Copyright © 2025芭赛特进出口（商丘）集团有限公司 豫ICP备20241125094号-2 | 技术支持 郑州博特网络技术有限公司</p>
+        <p>Copyright © 2025芭赛特进出口（商丘）集团有限公司 <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" class="icp-link">豫ICP备2025138885号-1</a></p>
       </div>
     </div>
   </footer>
@@ -50,6 +50,16 @@
 .footer-bottom p {
   font-size: 12px;
   color: rgba(255, 255, 255, 0.7);
+}
+
+.icp-link {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+}
+
+.icp-link:hover {
+  color: white;
+  text-decoration: underline;
 }
 
 @media (max-width: 768px) {
